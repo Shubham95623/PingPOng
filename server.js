@@ -46,18 +46,6 @@ score2=0
 
 room=1
 
-
-Room={
-    balls,
-    score1,
-    score2,
-    room,
-    users:0,
-    user:[]
-
-}
-
-
   const io =  socket(server,{ cors: { origin: "*" , methods: ["GET", "POST"],},})
 
 users=0
