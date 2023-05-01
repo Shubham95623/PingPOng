@@ -85,16 +85,16 @@ socket.on('moveBall',(ball)=>{
         if (balls.xpos + balls.radius  > 547) {
             balls.dx = -balls.dx;
         }
-        if (balls.xpos - balls.radius< 3) {
+        else if (balls.xpos - balls.radius< 3) {
             balls.dx = -balls.dx;
         }
-        if (balls.ypos - balls.radius < 3) {
+        else if (balls.ypos - balls.radius < 3) {
             balls.dy = -balls.dy;
         }
-        if (balls.ypos + balls.radius > 547) {
+        else if (balls.ypos + balls.radius > 547) {
             balls.dy = -balls.dy;
         }
-        if (
+       else if (
             ((ball[1].xpos-2  < balls.xpos + balls.radius  *1.41  ) && (balls.xpos < ball[1].xpos + ball[1].width+2 + balls.radius  *1.41 ) && (ball[1].ypos < balls.ypos + balls.radius - 1) && (balls.ypos-balls.radius<ball[1].ypos+ball[1].height) )
              || 
             ((ball[2].xpos-2 <= balls.xpos + balls.radius  *1.41 ) && (balls.xpos <= ball[2].xpos + ball[2].width+2 + balls.radius  *1.41 ) && (ball[2].ypos +ball[2].height >= balls.ypos - balls.radius - 1)  && (balls.ypos+balls.radius>ball[2].ypos))  
