@@ -18,24 +18,13 @@ var balls={
 score1=0
 score2=0
 
-room=1
 
 
-Room={
-    balls,
-    score1,
-    score2,
-    room,
-    i:0,
-    user:[]
-}
-
-Rooms=[]
 
 
 
   const io =  socket(server,{ cors: { origin: "*" , methods: ["GET", "POST"],},})
-
+  room=1
 i=0
 const user=[]
 
@@ -48,14 +37,13 @@ io.on('connection',(socket)=>{
 socket.join(room)
 
 
-
+i++;
 
 user.push(socket.id)
 
 
 
-i++
-// Rooms[i].push(user)
+
     console.log(user)
     
 
@@ -91,9 +79,9 @@ socket.on('disconnect',()=>{
 
 
 
-//   if(Room.i==2)
+if(i==2)
 socket.on('moveBall',(ball)=>{
-// setInterval(()=>{
+
         if (balls.xpos + balls.radius  > 547) {
             balls.dx = -balls.dx;
         }
@@ -107,9 +95,9 @@ socket.on('moveBall',(ball)=>{
             balls.dy = -balls.dy;
         }
         if (
-            ((ball[1].xpos < balls.xpos + balls.radius  *1.41  ) && (balls.xpos < ball[1].xpos + ball[1].width + balls.radius  *1.41 ) && (ball[1].ypos < balls.ypos + balls.radius - 1) && (balls.ypos-balls.radius<ball[1].ypos+ball[1].height) )
+            ((ball[1].xpos-2  < balls.xpos + balls.radius  *1.41  ) && (balls.xpos < ball[1].xpos + ball[1].width+2 + balls.radius  *1.41 ) && (ball[1].ypos < balls.ypos + balls.radius - 1) && (balls.ypos-balls.radius<ball[1].ypos+ball[1].height) )
              || 
-            ((ball[2].xpos <= balls.xpos + balls.radius  *1.41 ) && (balls.xpos <= ball[2].xpos + ball[2].width + balls.radius  *1.41 ) && (ball[2].ypos +ball[2].height >= balls.ypos - balls.radius - 1)  && (balls.ypos+balls.radius>ball[2].ypos))  
+            ((ball[2].xpos-2 <= balls.xpos + balls.radius  *1.41 ) && (balls.xpos <= ball[2].xpos + ball[2].width+2 + balls.radius  *1.41 ) && (ball[2].ypos +ball[2].height >= balls.ypos - balls.radius - 1)  && (balls.ypos+balls.radius>ball[2].ypos))  
             
             ) {
             balls.dy= -balls.dy;
@@ -120,7 +108,6 @@ socket.on('moveBall',(ball)=>{
         
       
 
-        //    socket.to("room-"+room).emit('ballState',balls)
             io.sockets.in(room).emit('ballState',balls)
 
 if((balls.ypos>= 538)&& (balls.xpos>=170) && (balls.xpos<=340) ){
@@ -129,7 +116,6 @@ io.sockets.in(room).emit('updateScore1',score1)
 }
 if((balls.ypos<= 12)&& (balls.xpos>=170) && (balls.xpos<=340) ){
 score2++
-// io.sockets.in("room-"+room).emit('updateScore2',score2)
 io.sockets.in(room).emit('updateScore2',score2)
 }
     })
@@ -138,13 +124,16 @@ io.sockets.in(room).emit('updateScore2',score2)
 
 
 
-if(i%2==0){
-    // room++;
-    // i=0;
-    console.log(room, i);
-}
+
 
 })
+
+
+
+if(user==0){
+    score1=0
+    score2=0
+}
 
 
 
