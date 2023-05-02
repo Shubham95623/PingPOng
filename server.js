@@ -71,6 +71,27 @@ socket.on('disconnect',()=>{
         user.splice(index, 1); 
     }
     console.log(user+"  "+i);
+
+
+    if(i==0){
+        score1=0
+        score2=0
+    
+        balls={
+            xpos:150,
+            ypos:200,
+            radius:10,
+            color:"green",
+            speed:4,
+            dx:3,
+            dy:3,
+          }
+    
+    
+    }
+    
+    
+
 })
 
 
@@ -166,7 +187,7 @@ io.sockets.in(room).emit('updateScore2',score2)
 
 
 
-if(user==0){
+if(i==0){
     score1=0
     score2=0
 
@@ -188,6 +209,5 @@ if(user==0){
 server.listen(3000,()=>{
 console.log('user is ready');
 })
-
 
 
