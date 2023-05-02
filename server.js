@@ -84,25 +84,61 @@ socket.on('moveBall',(ball)=>{
 
         if (balls.xpos + balls.radius  > 547) {
             balls.dx = -balls.dx;
+            // balls.dx = -3;
         }
         else if (balls.xpos - balls.radius< 3) {
             balls.dx = -balls.dx;
+            // balls.dx = -3;
         }
         else if (balls.ypos - balls.radius < 3) {
             balls.dy = -balls.dy;
+            // balls.dy = -3;
         }
         else if (balls.ypos + balls.radius > 547) {
             balls.dy = -balls.dy;
+            // balls.dy = -3;
         }
-       else if (
-            ((ball[1].xpos-2  < balls.xpos + balls.radius  *1.41  ) && (balls.xpos < ball[1].xpos + ball[1].width+2 + balls.radius  *1.41 ) && (ball[1].ypos < balls.ypos + balls.radius - 1) && (balls.ypos-balls.radius<ball[1].ypos+ball[1].height) )
-             || 
-            ((ball[2].xpos-2 <= balls.xpos + balls.radius  *1.41 ) && (balls.xpos <= ball[2].xpos + ball[2].width+2 + balls.radius  *1.41 ) && (ball[2].ypos +ball[2].height >= balls.ypos - balls.radius - 1)  && (balls.ypos+balls.radius>ball[2].ypos))  
-            
-            ) {
-            balls.dy= -balls.dy;
+
+
+       else if 
+            ((ball[1].xpos-2  < balls.xpos + balls.radius  *1.41  ) && (balls.xpos < ball[1].xpos + ball[1].width+2 + balls.radius  *1.41 ) && (ball[1].ypos < balls.ypos + balls.radius - 1) && (balls.ypos-balls.radius<ball[1].ypos+ball[1].height) ){
+a=balls.xpos -ball[1].xpos
+b=ball[1].xpos +ball[1].width -balls.xpos
+if(a>b){
+    c=b/a
+}
+else
+c=a/b
+
+                balls.dy= -balls.dy;
+                // balls.dx= balls.dx/c;
+
+            }
+           
+           else if ((ball[2].xpos-2 <= balls.xpos + balls.radius  *1.41 ) && (balls.xpos <= ball[2].xpos + ball[2].width+2 + balls.radius  *1.41 ) && (ball[2].ypos +ball[2].height >= balls.ypos - balls.radius - 1)  && (balls.ypos+balls.radius>ball[2].ypos))  
+             {
+                a=balls.xpos -ball[2].xpos
+                b=ball[2].xpos +ball[2].width -balls.xpos
+                if(a>b){
+                    c=b/a
+                }
+                else
+                c=a/b
+
+                balls.dy= -balls.dy;
+                // balls.dx= balls.dx/c;
+
         }
         
+
+
+
+
+
+
+
+
+
         balls.xpos += balls.dx;
         balls.ypos += balls.dy;
         
@@ -133,6 +169,18 @@ io.sockets.in(room).emit('updateScore2',score2)
 if(user==0){
     score1=0
     score2=0
+
+    balls={
+        xpos:150,
+        ypos:200,
+        radius:10,
+        color:"green",
+        speed:4,
+        dx:3,
+        dy:3,
+      }
+
+
 }
 
 
