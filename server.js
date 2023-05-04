@@ -11,8 +11,8 @@ var balls={
     radius:10,
     color:"green",
     speed:4,
-    dx:3,
-    dy:3,
+    dx:4,
+    dy:4,
   }
 
 score1=0
@@ -48,7 +48,6 @@ user.push(socket.id)
     
 
     console.log(room+"  "+i);
-
 
 
 socket.on('movePunk',(data)=>{
@@ -132,7 +131,7 @@ else
 c=a/b
 
                 balls.dy= -balls.dy;
-                balls.dx= ball[3]*3/4 + balls.dx;
+                balls.dx= ball[3]*65/100 + balls.dx;
 
             }
            
@@ -147,7 +146,7 @@ c=a/b
                 c=a/b
 
                 balls.dy= -balls.dy;
-                balls.dx= ball[3]*3/4+balls.dx;
+                balls.dx= ball[3]*65/100+balls.dx;
 
         }
         
