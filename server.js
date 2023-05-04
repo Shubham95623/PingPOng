@@ -24,7 +24,7 @@ score2=0
 
 
   const io =  socket(server,{ cors: { origin: "*" , methods: ["GET", "POST"],},})
-  room=1
+
 i=0
 const user=[]
 
@@ -34,7 +34,7 @@ io.setMaxListeners(50);
 io.on('connection',(socket)=>{
 
 
-socket.join(room)
+
 
 
 i++;
@@ -42,22 +42,18 @@ i++;
 user.push(socket.id)
 
 
-
-
     console.log(user)
-    
-
-    console.log(room+"  "+i);
+ 
 
 
 socket.on('movePunk',(data)=>{
     if(data[1]==user[1]){
 
 
-        io.sockets.in(room).emit('stateUpdate1',data)    
+        io.sockets.emit('stateUpdate1',data)    
 }
     if(data[1]==user[0]){
-io.sockets.in(room).emit('stateUpdate',data)
+io.sockets.emit('stateUpdate',data)
  }
 
     })
@@ -126,19 +122,19 @@ socket.on('moveBall',(ball)=>{
             ((ball[1].xpos-2  < balls.xpos + balls.radius ) && (balls.xpos < ball[1].xpos + ball[1].width+2 + balls.radius ) && (ball[1].ypos < balls.ypos + balls.radius - 1) && (balls.ypos-balls.radius<ball[1].ypos+ball[1].height) ){
 
                 balls.dy= -balls.dy;
-                balls.dx= ball[3]*65/100 + balls.dx;
+                balls.dx= ball[0]*65/100 + balls.dx;
 
             }
            
            else if ((ball[2].xpos-2 <= balls.xpos + balls.radius  *1.41 ) && (balls.xpos <= ball[2].xpos + ball[2].width+2 + balls.radius  *1.41 ) && (ball[2].ypos +ball[2].height >= balls.ypos - balls.radius - 1)  && (balls.ypos+balls.radius>ball[2].ypos))  
              {
                 balls.dy= -balls.dy;
-                balls.dx= ball[3]*65/100+balls.dx;
+                balls.dx= ball[0]*65/100+balls.dx;
 
         }
         
-if( Math.abs(balls.dx)>6){
-    balls.dx= balls.dx /Math.abs(balls.dx) *6
+if( Math.abs(balls.dx)>7){
+    balls.dx= balls.dx /Math.abs(balls.dx) *7
 }
        
 
@@ -147,15 +143,15 @@ if( Math.abs(balls.dx)>6){
         
       
 
-            io.sockets.in(room).emit('ballState',balls)
+            io.sockets.emit('ballState',balls)
 
 if((balls.ypos>= 538)&& (balls.xpos>=170) && (balls.xpos<=340) ){
 score1++
-io.sockets.in(room).emit('updateScore1',score1)
+io.sockets.emit('updateScore1',score1)
 }
 if((balls.ypos<= 12)&& (balls.xpos>=170) && (balls.xpos<=340) ){
 score2++
-io.sockets.in(room).emit('updateScore2',score2)
+io.sockets.emit('updateScore2',score2)
 }
     })
 })
