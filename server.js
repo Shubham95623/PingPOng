@@ -123,6 +123,14 @@ socket.on('moveBall',(ball)=>{
 
        else if 
             ((ball[1].xpos-2  < balls.xpos + balls.radius  *1.41  ) && (balls.xpos < ball[1].xpos + ball[1].width+2 + balls.radius  *1.41 ) && (ball[1].ypos < balls.ypos + balls.radius - 1) && (balls.ypos-balls.radius<ball[1].ypos+ball[1].height) ){
+a=balls.xpos -ball[1].xpos
+b=ball[1].xpos +ball[1].width -balls.xpos
+if(a>b){
+    c=b/a
+}
+else
+c=a/b
+
                 balls.dy= -balls.dy;
                 balls.dx= ball[3]*3/4 + balls.dx;
 
@@ -130,14 +138,21 @@ socket.on('moveBall',(ball)=>{
            
            else if ((ball[2].xpos-2 <= balls.xpos + balls.radius  *1.41 ) && (balls.xpos <= ball[2].xpos + ball[2].width+2 + balls.radius  *1.41 ) && (ball[2].ypos +ball[2].height >= balls.ypos - balls.radius - 1)  && (balls.ypos+balls.radius>ball[2].ypos))  
              {
-            
+                a=balls.xpos -ball[2].xpos
+                b=ball[2].xpos +ball[2].width -balls.xpos
+                if(a>b){
+                    c=b/a
+                }
+                else
+                c=a/b
+
                 balls.dy= -balls.dy;
                 balls.dx= ball[3]*3/4+balls.dx;
 
         }
         
-if( Math.abs(balls.dx)>8){
-    balls.dx= balls.dx /Math.abs(balls.dx) *8
+if( Math.abs(balls.dx)>7){
+    balls.dx= balls.dx /Math.abs(balls.dx) *7
 }
        
 
@@ -162,6 +177,20 @@ io.sockets.in(room).emit('updateScore2',score2)
 
 
 
+
+if(i==0){
+    score1=0
+    score2=0
+    balls={
+        xpos:150,
+        ypos:200,
+        radius:10,
+        color:"green",
+        speed:4,
+        dx:3,
+        dy:3,
+      }
+}
 
 
 
