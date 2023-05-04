@@ -51,9 +51,11 @@ user.push(socket.id)
 
 
 socket.on('movePunk',(data)=>{
-    if(data[1]==user[1])
-    io.sockets.in(room).emit('stateUpdate1',data)
+    if(data[1]==user[1]){
 
+
+        io.sockets.in(room).emit('stateUpdate1',data)    
+}
     if(data[1]==user[0]){
 io.sockets.in(room).emit('stateUpdate',data)
  }
@@ -150,8 +152,8 @@ c=a/b
 
         }
         
-if( Math.abs(balls.dx)>7){
-    balls.dx= balls.dx /Math.abs(balls.dx) *7
+if( Math.abs(balls.dx)>6){
+    balls.dx= balls.dx /Math.abs(balls.dx) *6
 }
        
 
