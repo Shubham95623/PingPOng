@@ -11,8 +11,8 @@ var balls={
     radius:10,
     color:"green",
     speed:4,
-    dx:3,
-    dy:3,
+    dx:4,
+    dy:4,
   }
 
 score1=0
@@ -80,8 +80,8 @@ socket.on('disconnect',()=>{
             radius:10,
             color:"green",
             speed:4,
-            dx:3,
-            dy:3,
+            dx:4,
+            dy:4,
           }
     
     
@@ -168,8 +168,8 @@ if(i==0){
         radius:10,
         color:"green",
         speed:4,
-        dx:3,
-        dy:3,
+        dx:4,
+        dy:4,
       }
 }
 
