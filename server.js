@@ -11,8 +11,8 @@ var balls = {
     radius: 10,
     color: "green",
     speed: 4,
-    dx: 2,
-    dy: 2,
+    dx: 3,
+    dy: 3,
 }
 
 score1 = 0
@@ -100,8 +100,8 @@ io.on('connection', (socket) => {
                 radius: 10,
                 color: "green",
                 speed: 4,
-                dx: 2,
-                dy: 2,
+                dx: 3,
+                dy: 3,
             }
 
 
@@ -116,7 +116,6 @@ io.on('connection', (socket) => {
 
 
 
-setInterval(()=>{
 
     if (i == 2)
         socket.on('moveBall', (ball) => {
@@ -153,8 +152,8 @@ setInterval(()=>{
 
             }
 
-            if (Math.abs(balls.dx) > 6) {
-                balls.dx = balls.dx / Math.abs(balls.dx) * 6
+            if (Math.abs(balls.dx) > 7) {
+                balls.dx = balls.dx / Math.abs(balls.dx) * 7
             }
 
 
@@ -175,7 +174,13 @@ setInterval(()=>{
             }
         })
 
-    },5000)
+
+setInterval(() => {
+    
+}, 20);
+
+
+
 
 })
 
@@ -191,8 +196,8 @@ if (i == 0) {
         radius: 10,
         color: "green",
         speed: 4,
-        dx: 2,
-        dy: 2,
+        dx: 3,
+        dy: 3,
     }
 }
 
@@ -201,5 +206,4 @@ if (i == 0) {
 server.listen(3000, () => {
     console.log('user is ready');
 })
-
 
