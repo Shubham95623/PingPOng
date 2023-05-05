@@ -11,8 +11,8 @@ var balls = {
     radius: 10,
     color: "green",
     speed: 4,
-    dx: 3,
-    dy: 3,
+    dx: 2,
+    dy: 2,
 }
 
 score1 = 0
@@ -100,8 +100,8 @@ io.on('connection', (socket) => {
                 radius: 10,
                 color: "green",
                 speed: 4,
-                dx: 3,
-                dy: 3,
+                dx: 2,
+                dy: 2,
             }
 
 
@@ -153,8 +153,8 @@ setInterval(()=>{
 
             }
 
-            if (Math.abs(balls.dx) > 7) {
-                balls.dx = balls.dx / Math.abs(balls.dx) * 7
+            if (Math.abs(balls.dx) > 6) {
+                balls.dx = balls.dx / Math.abs(balls.dx) * 6
             }
 
 
@@ -191,8 +191,8 @@ if (i == 0) {
         radius: 10,
         color: "green",
         speed: 4,
-        dx: 3,
-        dy: 3,
+        dx: 2,
+        dy: 2,
     }
 }
 
