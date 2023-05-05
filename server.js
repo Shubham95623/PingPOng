@@ -116,6 +116,7 @@ io.on('connection', (socket) => {
 
 
 
+setInterval(()=>{
 
     if (i == 2)
         socket.on('moveBall', (ball) => {
@@ -174,13 +175,7 @@ io.on('connection', (socket) => {
             }
         })
 
-
-setInterval(() => {
-    
-}, 20);
-
-
-
+    },5000)
 
 })
 
@@ -206,4 +201,5 @@ if (i == 0) {
 server.listen(3000, () => {
     console.log('user is ready');
 })
+
 
