@@ -44,6 +44,8 @@ io.on('connection', (socket) => {
 
     console.log(user)
 
+if(i==2)
+    io.sockets.emit('usercheck',user[1])
 
 
     socket.on('movePunk', (data) => {
@@ -117,6 +119,7 @@ io.on('connection', (socket) => {
 
 
 
+
     if (i == 2)
         socket.on('moveBall', (ball) => {
           
@@ -175,6 +178,7 @@ io.on('connection', (socket) => {
         })
 
 
+
 })
 
 
@@ -199,4 +203,5 @@ if (i == 0) {
 server.listen(3000, () => {
     console.log('user is ready');
 })
+
 
