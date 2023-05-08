@@ -175,13 +175,6 @@ io.on('connection', (socket) => {
         })
 
 
-setInterval(() => {
-    
-}, 20);
-
-
-
-
 })
 
 
